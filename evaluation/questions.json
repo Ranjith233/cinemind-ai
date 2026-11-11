@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q1",
+    "question": "How did Tarantino develop his interest in cinema?",
+    "expected_pages": [12, 13, 23, 31],
+    "expected_chapter": "Video Archives",
+    "ground_truth": "Tarantino did not go to film school; his cinephilia developed through voracious movie-watching from an early age, working at Video Archives in Manhattan Beach, studying genre films, and absorbing European cinema like Godard.",
+    "keywords": ["film school", "Video Archives", "movies", "Godard", "cinema"]
+  },
+  {
+    "id": "q2",
+    "question": "What role did Video Archives play in his filmmaking journey?",
+    "expected_pages": [12, 14, 34, 72, 97],
+    "expected_chapter": "Video Archives",
+    "ground_truth": "Video Archives was a video store in Manhattan Beach where Tarantino worked as a clerk alongside fellow cinephiles like Roger Avary. It served as his unofficial film school, where he analyzed countless movies, debated filmmaking, and developed early scripts and dialogue.",
+    "keywords": ["Video Archives", "clerk", "Manhattan Beach", "Roger Avary", "scripts"]
+  },
+  {
+    "id": "q3",
+    "question": "Which filmmakers influenced his directing style?",
+    "expected_pages": [23, 31, 32],
+    "expected_chapter": "Video Archives",
+    "ground_truth": "Key influences on Tarantino's directing style include Brian De Palma, Jean-Luc Godard, Sergio Leone, and Howard Hawks, blending cinematic homage, pop-culture dialogue, and genre-bending techniques.",
+    "keywords": ["De Palma", "Godard", "Sergio Leone", "Howard Hawks", "influences"]
+  },
+  {
+    "id": "q4",
+    "question": "How does Reservoir Dogs use nonlinear storytelling?",
+    "expected_pages": [43, 44, 58],
+    "expected_chapter": "Reservoir Dogs",
+    "ground_truth": "Reservoir Dogs begins with breakfast dialogue, cuts to the bloody aftermath of an unseen jewelry heist, and uses flashbacks to introduce characters like Mr. White, Mr. Orange, and Mr. Blonde.",
+    "keywords": ["Reservoir Dogs", "heist", "flashbacks", "nonlinear", "aftermath"]
+  },
+  {
+    "id": "q5",
+    "question": "What makes Pulp Fiction's narrative structure unconventional?",
+    "expected_pages": [101, 102, 103],
+    "expected_chapter": "Pulp Fiction",
+    "ground_truth": "Pulp Fiction features a circular, time-warping episodic structure divided into interrelated stories involving Vincent Vega, Jules Winnfield, and Butch Coolidge, beginning and ending in the same diner.",
+    "keywords": ["Pulp Fiction", "circular", "time-warping", "Vincent Vega", "diner"]
+  },
+  {
+    "id": "q6",
+    "question": "What inspired Tarantino's approach to Western films?",
+    "expected_pages": [31, 219, 220],
+    "expected_chapter": "Django Unchained",
+    "ground_truth": "Tarantino was heavily inspired by Italian Spaghetti Westerns, particularly Sergio Leone and Sergio Corbucci's Django, using the genre to confront historical brutality and American slavery.",
+    "keywords": ["Western", "Spaghetti Western", "Sergio Leone", "Django", "Corbucci"]
+  },
+  {
+    "id": "q7",
+    "question": "How did his early screenwriting experiments influence his later work?",
+    "expected_pages": [40, 69, 70, 101],
+    "expected_chapter": "True Romance",
+    "ground_truth": "Tarantino's early unproduced scripts and experiments, including True Romance and Natural Born Killers, established his trademark dialogue, interlocking cinematic universes, and pop-culture monologues.",
+    "keywords": ["screenwriting", "True Romance", "Natural Born Killers", "dialogue", "scripts"]
+  }
+]

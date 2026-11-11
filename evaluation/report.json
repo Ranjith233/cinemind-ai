@@ -1,0 +1,170 @@
+{
+  "total_benchmark_questions": 7,
+  "average_retrieval_precision": 0.607,
+  "average_retrieval_recall": 0.543,
+  "average_context_precision": 0.929,
+  "average_context_recall": 0.394,
+  "average_citation_correctness": 1.0,
+  "average_answer_relevancy": 0.536,
+  "average_latency_ms": 760.6,
+  "results": [
+    {
+      "question_id": "q1",
+      "question": "How did Tarantino develop his interest in cinema?",
+      "retrieval_precision": 0.5,
+      "retrieval_recall": 0.6,
+      "context_precision": 1.0,
+      "context_recall": 0.3,
+      "citation_correctness": 1.0,
+      "answer_relevancy": 0.75,
+      "latency_ms": 891.6,
+      "retrieved_pages": [
+        23,
+        100,
+        203,
+        138
+      ],
+      "expected_pages": [
+        12,
+        13,
+        23,
+        31
+      ]
+    },
+    {
+      "question_id": "q2",
+      "question": "What role did Video Archives play in his filmmaking journey?",
+      "retrieval_precision": 0.75,
+      "retrieval_recall": 0.2,
+      "context_precision": 1.0,
+      "context_recall": 0.357,
+      "citation_correctness": 1.0,
+      "answer_relevancy": 0.571,
+      "latency_ms": 752.2,
+      "retrieved_pages": [
+        72,
+        97,
+        40,
+        34
+      ],
+      "expected_pages": [
+        12,
+        14,
+        34,
+        72,
+        97
+      ]
+    },
+    {
+      "question_id": "q3",
+      "question": "Which filmmakers influenced his directing style?",
+      "retrieval_precision": 0.75,
+      "retrieval_recall": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 0.55,
+      "citation_correctness": 1.0,
+      "answer_relevancy": 0.6,
+      "latency_ms": 690.4,
+      "retrieved_pages": [
+        31,
+        208,
+        30,
+        32
+      ],
+      "expected_pages": [
+        23,
+        31,
+        32
+      ]
+    },
+    {
+      "question_id": "q4",
+      "question": "How does Reservoir Dogs use nonlinear storytelling?",
+      "retrieval_precision": 0.5,
+      "retrieval_recall": 0.4,
+      "context_precision": 1.0,
+      "context_recall": 0.467,
+      "citation_correctness": 1.0,
+      "answer_relevancy": 0.4,
+      "latency_ms": 814.9,
+      "retrieved_pages": [
+        58,
+        69,
+        60,
+        246
+      ],
+      "expected_pages": [
+        43,
+        44,
+        58
+      ]
+    },
+    {
+      "question_id": "q5",
+      "question": "What makes Pulp Fiction's narrative structure unconventional?",
+      "retrieval_precision": 0.75,
+      "retrieval_recall": 0.4,
+      "context_precision": 1.0,
+      "context_recall": 0.211,
+      "citation_correctness": 1.0,
+      "answer_relevancy": 0.429,
+      "latency_ms": 866.6,
+      "retrieved_pages": [
+        102,
+        170,
+        105,
+        101
+      ],
+      "expected_pages": [
+        101,
+        102,
+        103
+      ]
+    },
+    {
+      "question_id": "q6",
+      "question": "What inspired Tarantino's approach to Western films?",
+      "retrieval_precision": 0.5,
+      "retrieval_recall": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 0.579,
+      "citation_correctness": 1.0,
+      "answer_relevancy": 0.5,
+      "latency_ms": 538.2,
+      "retrieved_pages": [
+        220,
+        31,
+        254,
+        230
+      ],
+      "expected_pages": [
+        31,
+        219,
+        220
+      ]
+    },
+    {
+      "question_id": "q7",
+      "question": "How did his early screenwriting experiments influence his later work?",
+      "retrieval_precision": 0.5,
+      "retrieval_recall": 0.2,
+      "context_precision": 0.5,
+      "context_recall": 0.294,
+      "citation_correctness": 1.0,
+      "answer_relevancy": 0.5,
+      "latency_ms": 770.3,
+      "retrieved_pages": [
+        175,
+        102,
+        38,
+        242
+      ],
+      "expected_pages": [
+        40,
+        69,
+        70,
+        101
+      ]
+    }
+  ]
+}
