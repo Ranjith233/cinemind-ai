@@ -48,10 +48,13 @@ class GeminiLLM:
         logger.info(f"Active Gemini model set to: {self.model_name}")
 
     def _init_client(self) -> None:
-        """Initialize official google-genai Client."""
+        """Initialize official google-genai Client with v1beta API options."""
         try:
-            self._client = genai.Client(api_key=self.api_key)
-            logger.info("google-genai Client initialized successfully.")
+            self._client = genai.Client(
+                api_key=self.api_key,
+                http_options={"api_version": "v1beta"},
+            )
+            logger.info("google-genai Client initialized successfully with v1beta.")
         except Exception as e:
             logger.error(f"Failed to initialize google-genai client: {e}")
             self._client = None
@@ -67,7 +70,7 @@ class GeminiLLM:
         system_instruction: Optional[str] = None,
         temperature: float = 0.3,
     ) -> str:
-        """Generate response synchronously."""
+        """Generate response synchronously with fallback retry."""
         if not self.is_configured:
             return self._offline_fallback_response(prompt)
 
@@ -77,16 +80,25 @@ class GeminiLLM:
             temperature=temperature,
         )
 
-        try:
-            response = self._client.models.generate_content(
-                model=self.model_name,
-                contents=prompt,
-                config=config,
-            )
-            return response.text or ""
-        except Exception as e:
-            logger.error(f"Gemini API error during generate: {e}")
-            raise RuntimeError(f"Gemini API generation failed: {e}")
+        models_to_try = [self.model_name]
+        if self.model_name != "gemini-1.5-flash":
+            models_to_try.append("gemini-1.5-flash")
+
+        last_error = None
+        for m in models_to_try:
+            try:
+                response = self._client.models.generate_content(
+                    model=m,
+                    contents=prompt,
+                    config=config,
+                )
+                return response.text or ""
+            except Exception as e:
+                logger.warning(f"Generation attempt with {m} failed: {e}. Trying next fallback...")
+                last_error = e
+
+        logger.error(f"Gemini API error during generate: {last_error}")
+        raise RuntimeError(f"Gemini API generation failed: {last_error}")
 
     def generate_stream(
         self,
@@ -94,7 +106,7 @@ class GeminiLLM:
         system_instruction: Optional[str] = None,
         temperature: float = 0.3,
     ) -> Generator[str, None, None]:
-        """Stream response chunks in real-time."""
+        """Stream response chunks in real-time with fallback retry."""
         if not self.is_configured:
             fallback = self._offline_fallback_response(prompt)
             # Yield in word chunks to simulate smooth streaming
@@ -110,18 +122,28 @@ class GeminiLLM:
             temperature=temperature,
         )
 
-        try:
-            response_stream = self._client.models.generate_content_stream(
-                model=self.model_name,
-                contents=prompt,
-                config=config,
-            )
-            for chunk in response_stream:
-                if chunk.text:
-                    yield chunk.text
-        except Exception as e:
-            logger.error(f"Gemini API streaming error: {e}")
-            yield f"\n\n*[Gemini API Error: {e}]*"
+        models_to_try = [self.model_name]
+        if self.model_name != "gemini-1.5-flash":
+            models_to_try.append("gemini-1.5-flash")
+
+        success = False
+        for m in models_to_try:
+            try:
+                response_stream = self._client.models.generate_content_stream(
+                    model=m,
+                    contents=prompt,
+                    config=config,
+                )
+                for chunk in response_stream:
+                    if chunk.text:
+                        yield chunk.text
+                success = True
+                break
+            except Exception as e:
+                logger.warning(f"Streaming attempt with {m} failed: {e}")
+
+        if not success:
+            yield "\n\n*[Gemini API service momentarily unavailable. Please retry.]*"
 
     def rewrite_query(self, chat_history: str, latest_question: str) -> str:
         """
