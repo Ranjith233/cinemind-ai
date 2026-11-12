@@ -4,6 +4,7 @@ Production-grade RAG application with hybrid retrieval, cross-encoder reranking,
 page citations, and cinema research intelligence.
 """
 
+import sys
 from pathlib import Path
 import streamlit as st
 
@@ -14,6 +15,77 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+# ---------------------------------------------------------
+# Environment & Dependency Validation
+# ---------------------------------------------------------
+missing_deps = []
+
+# Check PyMuPDF
+try:
+    import pymupdf
+except ImportError:
+    try:
+        import fitz
+    except ImportError:
+        missing_deps.append("pymupdf")
+
+# Check Sentence Transformers
+try:
+    import sentence_transformers
+except ImportError:
+    missing_deps.append("sentence-transformers")
+
+# Check ChromaDB
+try:
+    import chromadb
+except ImportError:
+    missing_deps.append("chromadb")
+
+# Check Google GenAI SDK
+try:
+    from google import genai
+except ImportError:
+    missing_deps.append("google-genai")
+
+if missing_deps:
+    st.error("### ⚠️ Virtual Environment Required")
+    st.markdown(
+        f"""
+        CineMind AI was launched using the system Python interpreter:
+        `{sys.executable}`
+
+        The following required packages are not installed in this interpreter:
+        `{", ".join(missing_deps)}`
+
+        ---
+        ### 🚀 How to Launch CineMind AI Correctly:
+
+        All dependencies are pre-installed in the dedicated project virtual environment (`.venv`).
+
+        **Choose any of the following options:**
+
+        1. **One-Click Batch Launcher (Recommended for Windows):**
+           Double-click **`run_app.bat`** in the project folder.
+
+        2. **PowerShell Script:**
+           ```powershell
+           .\\run_app.ps1
+           ```
+
+        3. **Direct Virtual Environment Streamlit:**
+           ```powershell
+           .\\.venv\\Scripts\\streamlit.exe run app.py
+           ```
+
+        4. **Activate Virtual Environment first:**
+           ```powershell
+           .\\.venv\\Scripts\\Activate.ps1
+           streamlit run app.py
+           ```
+        """
+    )
+    st.stop()
 
 from config.settings import settings
 from config.logger import get_logger

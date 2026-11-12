@@ -213,7 +213,26 @@ python scripts/ingest_book.py
 This extracts all 277 pages, builds the chapter index, computes embeddings, and stores 268 vectors in persistent ChromaDB.
 
 ### 5. Launch CineMind AI
-```bash
+
+**Option A (One-Click Windows Launcher):**
+Double-click `run_app.bat` or run:
+```cmd
+run_app.bat
+```
+
+**Option B (PowerShell):**
+```powershell
+.\run_app.ps1
+```
+
+**Option C (Direct Virtual Environment):**
+```powershell
+.\.venv\Scripts\streamlit.exe run app.py
+```
+
+**Option D (Standard Virtual Environment Activation):**
+```powershell
+.\.venv\Scripts\activate
 streamlit run app.py
 ```
 Open your browser at `http://localhost:8501`.

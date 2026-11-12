@@ -8,7 +8,13 @@ import hashlib
 from pathlib import Path
 import re
 from typing import Any, Optional
-import pymupdf  # PyMuPDF
+try:
+    import pymupdf  # PyMuPDF modern package name
+except ImportError:
+    try:
+        import fitz as pymupdf  # Legacy or alternate PyMuPDF module alias
+    except ImportError:
+        pymupdf = None
 
 from config.logger import get_logger
 from core.chapter_detector import ChapterDetector
@@ -89,6 +95,11 @@ class PDFLoader:
 
     def load(self, file_path: str | Path) -> ExtractedDocument:
         """Extracts text and metadata from a PDF file."""
+        if pymupdf is None:
+            raise ImportError(
+                "PyMuPDF is not installed in the active Python environment. "
+                "Please launch CineMind AI via the project virtual environment (run_app.bat or .venv\\Scripts\\streamlit.exe)."
+            )
         path = Path(file_path).resolve()
         if not path.exists():
             raise FileNotFoundError(f"File not found: {path}")
